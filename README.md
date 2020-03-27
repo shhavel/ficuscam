@@ -29,7 +29,7 @@ Set up script `pic.py` to run each hour and `post.sh` in 5 minutes after `pic.py
 
 [Scheduling tasks with Cron](https://www.raspberrypi.org/documentation/linux/usage/cron.md)
 
-Run crontab: `crontab -e`, and post both scripts runs:
+Run crontab: `crontab -e`, and specify `pic.py` to run each hour and `post.sh` 5 minutes after:
 
 ```sh
 0 * * * * /home/pi/ficuscam/pic.py
@@ -37,3 +37,10 @@ Run crontab: `crontab -e`, and post both scripts runs:
 ```
 
 Recheck that the scripts are saved in crontab: `crontab -l`
+
+Or `pic.py` run each 10 minutes and `post.sh` one minute since then every time:
+
+```sh
+*/10 * * * * /home/pi/ficuscam/pic.py
+1,11,21,31,41,51 * * * * /home/pi/ficuscam/post.sh
+```
