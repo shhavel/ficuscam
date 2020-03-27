@@ -25,22 +25,24 @@ Ensure your default user has ability to push to remote repo.
 
 ### Scheduling tasks with Cron
 
-Set up script `pic.py` to run each hour and `post.sh` in 5 minutes after `pic.py`.
+Set up scripts `pic.py` and `post.sh` to run periodically one after another.
 
 [Scheduling tasks with Cron](https://www.raspberrypi.org/documentation/linux/usage/cron.md)
 
-Run crontab: `crontab -e`, and specify `pic.py` to run each hour and `post.sh` 5 minutes after:
+Run crontab: `crontab -e`, and specify `pic.py` to run each hour during the day and `post.sh` 1 minute after:
 
 ```sh
-0 * * * * /home/pi/ficuscam/pic.py
-5 * * * * /home/pi/ficuscam/post.sh
+0 5-20 * * * /home/pi/ficuscam/pic.py
+1 5-20 * * * /home/pi/ficuscam/post.sh
 ```
 
 Recheck that the scripts are saved in crontab: `crontab -l`
 
-Or `pic.py` run each 10 minutes and `post.sh` one minute since then every time:
+## Troubleshooting
+
+Ensure `pic.py` and `post.sh` both work:
 
 ```sh
-*/10 * * * * /home/pi/ficuscam/pic.py
-1,11,21,31,41,51 * * * * /home/pi/ficuscam/post.sh
+./pic.py
+./post.sh
 ```
